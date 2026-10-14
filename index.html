@@ -1,0 +1,494 @@
+# carta_para_ti.py
+# Ejecuta este archivo y se creará el HTML con todo listo
+
+html = '''<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi Chaparrita ♡</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #e91e63;
+      --light-pink: #fce4ec;
+      --dark: #2c2c2c;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 50%, #f8bbd9 100%);
+      color: var(--dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    
+    .hero h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      color: var(--pink);
+      margin-bottom: 10px;
+    }
+    
+    .hero .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #555;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+    
+    .heart { font-size: 2.5rem; animation: pulse 1.5s infinite; }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 32px;
+      background: var(--pink);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      box-shadow: 0 8px 25px rgba(233,30,99,0.35);
+    }
+    
+    section {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      text-align: center;
+      color: var(--pink);
+      margin-bottom: 15px;
+    }
+    
+    .section-sub {
+      text-align: center;
+      color: #666;
+      margin-bottom: 50px;
+    }
+    
+    .letter-box {
+      background: white;
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      border: 2px solid var(--light-pink);
+      position: relative;
+    }
+    
+    .letter-box::before {
+      content: "♡";
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 0 15px;
+      font-size: 2rem;
+      color: var(--pink);
+    }
+    
+    .letter-text {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: #333;
+      text-align: center;
+    }
+    
+    .highlight { color: var(--pink); font-weight: 500; }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+    
+    .photo-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .photo-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    
+    .photo-card .caption {
+      padding: 15px;
+      text-align: center;
+      font-style: italic;
+      color: #555;
+    }
+    
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .reason-card {
+      background: white;
+      border-radius: 16px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+      border-top: 4px solid var(--pink);
+    }
+    
+    .reason-card .num {
+      font-size: 1.8rem;
+      color: var(--pink);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .final {
+      text-align: center;
+      padding: 100px 20px;
+    }
+    
+    .final h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: var(--pink);
+      margin-bottom: 20px;
+    }
+    
+    .signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: var(--pink);
+      margin-top: 40px;
+    }
+    
+    /* Música */
+    .music-section { text-align: center; padding: 60px 20px; }
+    
+    .music-card {
+      background: white;
+      border-radius: 24px;
+      padding: 50px 30px;
+      max-width: 420px;
+      margin: 0 auto;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .music-icon {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f0f7f4, #e8f0ec);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+    
+    .music-icon .note { font-size: 3.5rem; color: #5a7a6a; }
+    .music-icon .heart-small {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      font-size: 1.4rem;
+      color: #e8a0b0;
+    }
+    
+    .music-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: #7a9a8a;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    
+    .music-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: #2c3e35;
+      margin-bottom: 12px;
+    }
+    
+    .music-desc {
+      color: #777;
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+    }
+    
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #5a7a6a;
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .progress-bar { margin-top: 25px; width: 100%; }
+    .time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #999;
+      margin-bottom: 6px;
+    }
+    .bar {
+      height: 6px;
+      background: #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #5a7a6a;
+    }
+    .volume {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .volume input { flex: 1; accent-color: #5a7a6a; }
+    audio { display: none; }
+  </style>
+</head>
+<body>
+
+  <section class="hero" id="inicio">
+    <div class="heart">♡</div>
+    <h1>Mi Chaparrita</h1>
+    <p class="subtitle">Una pequeña muestra de lo mucho que me importas</p>
+    <p style="max-width:500px; color:#666; margin-top:10px;">
+      Hecho con todo mi cariño, solo para ti.
+    </p>
+    <a href="#carta" class="btn">Leer mi mensaje ♡</a>
+  </section>
+
+  <section id="carta">
+    <h2 class="section-title">Para ti, mi niña</h2>
+    <p class="section-sub">Estas palabras nacen del corazón</p>
+    
+    <div class="letter-box">
+      <div class="letter-text">
+        <p>
+          <span class="highlight">Mi chaparrita</span>, perdón por no regalarte una carta… 
+          pero te hago esto como muestra de que me importas mucho, mi niña.
+        </p>
+        <p>
+          Solo quiero decirte que estoy muy agradecido de tener una niña tan linda como tú.
+        </p>
+        <p>
+          Recuerda que <strong>siempre estaré para ti</strong>, 
+          nunca te dejaré de amar 
+          y te prometo que haré todo lo posible para quedarme contigo.
+        </p>
+        <p style="margin-top:30px; font-style:italic; color:var(--pink);">
+          Con todo mi amor ♡
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Nuestros momentos</h2>
+    <p class="section-sub">Pequeños recuerdos que guardo con cariño</p>
+    
+    <div class="gallery">
+      <div class="photo-card">
+        <img src="21598.jpg" alt="Nuestras manos">
+        <div class="caption">Juntos, siempre ♡</div>
+      </div>
+      <div class="photo-card">
+        <img src="21599.jpg" alt="Con flores">
+        <div class="caption">Para ti, con todo mi cariño</div>
+      </div>
+      <div class="photo-card">
+        <img src="31115.jpg" alt="Nosotros">
+        <div class="caption">Tú y yo</div>
+      </div>
+      <div class="photo-card">
+        <img src="31072.jpg" alt="Mi niña">
+        <div class="caption">Mi chaparrita hermosa</div>
+      </div>
+      <div class="photo-card">
+        <img src="31116.jpg" alt="Cerca de ti">
+        <div class="caption">Siempre cerca de ti</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="music-section">
+    <div class="music-card">
+      <div class="music-icon">
+        <span class="note">♪</span>
+        <span class="heart-small">♡</span>
+      </div>
+      
+      <div class="music-label">Nuestra banda sonora</div>
+      <h3 class="music-title">Una canción<br>para nosotros</h3>
+      <p class="music-desc">Hay canciones que, con el tiempo,<br>se convierten en recuerdos.</p>
+      
+      <button class="play-btn" onclick="togglePlay()">
+        <span id="playIcon">▶</span> 
+        <span id="playText">Reproducir canción</span>
+      </button>
+      
+      <p style="margin-top:12px; font-size:0.85rem; color:#999;" id="statusText">Canción lista para reproducirse</p>
+      
+      <div class="progress-bar">
+        <div class="time">
+          <span id="currentTime">0:00</span>
+          <span id="duration">3:56</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" id="progress"></div>
+        </div>
+      </div>
+      
+      <div class="volume">
+        <span>Volumen</span>
+        <input type="range" min="0" max="1" step="0.01" value="0.8" onchange="setVolume(this.value)">
+      </div>
+      
+      <!-- Cambia el src por el nombre de tu canción -->
+      <audio id="song" src="cancion.mp3" preload="metadata"></audio>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Por qué te quiero</h2>
+    <p class="section-sub">Solo algunas de las muchas razones</p>
+    
+    <div class="reasons">
+      <div class="reason-card">
+        <div class="num">01</div>
+        <p>Porque me importas mucho más de lo que las palabras pueden decir.</p>
+      </div>
+      <div class="reason-card">
+        <div class="num">02</div>
+        <p>Porque eres la niña más linda que pude haber encontrado.</p>
+      </div>
+      <div class="reason-card">
+        <div class="num">03</div>
+        <p>Porque siempre estaré para ti, pase lo que pase.</p>
+      </div>
+      <div class="reason-card">
+        <div class="num">04</div>
+        <p>Porque te prometo hacer todo lo posible para quedarme contigo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Nunca te dejaré de amar</h2>
+    <p>
+      Gracias por ser tú.<br>
+      Gracias por estar en mi vida.<br>
+      Y gracias por dejarme cuidarte y quererte cada día.
+    </p>
+    <div class="signature">
+      Tu niño, para siempre ♡
+    </div>
+    <br><br>
+    <a href="#inicio" class="btn" style="background:#555;">Volver arriba ↑</a>
+  </section>
+
+  <script>
+    const audio = document.getElementById('song');
+    const playIcon = document.getElementById('playIcon');
+    const playText = document.getElementById('playText');
+    const statusText = document.getElementById('statusText');
+    const progress = document.getElementById('progress');
+    const currentTimeEl = document.getElementById('currentTime');
+    let isPlaying = false;
+
+    function togglePlay() {
+      if (!audio.src || audio.src.endsWith('/')) {
+        statusText.textContent = "Agrega una canción (cancion.mp3)";
+        return;
+      }
+      
+      if (isPlaying) {
+        audio.pause();
+        playIcon.textContent = "▶";
+        playText.textContent = "Reproducir canción";
+        statusText.textContent = "Pausado";
+      } else {
+        audio.play();
+        playIcon.textContent = "❚❚";
+        playText.textContent = "Pausar";
+        statusText.textContent = "Reproduciendo...";
+      }
+      isPlaying = !isPlaying;
+    }
+
+    function setVolume(val) {
+      audio.volume = val;
+    }
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = percent + "%";
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
+      playIcon.textContent = "▶";
+      playText.textContent = "Reproducir canción";
+      statusText.textContent = "Canción terminada";
+      progress.style.width = "0%";
+    });
+
+    function formatTime(seconds) {
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+      return min + ":" + (sec < 10 ? "0" : "") + sec;
+    }
+  </script>
+
+</body>
+</html>
+'''
+
+# Guardar el archivo
+with open("carta_para_ti.html", "w", encoding="utf-8") as f:
+    f.write(html)
+
+print("✅ Página creada correctamente: carta_para_ti.html")
+print("Abre el archivo en tu navegador para verla.")
